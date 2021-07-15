@@ -1,0 +1,61 @@
+importar  javax.swing. * ;
+importar  java.awt. * ;
+import  java.awt.event.ActionEvent ;
+import  java.awt.event.ActionListener ;
+
+public  class  SumarGUI {
+    public  static  boolean  isInt ( String  str ) {
+        prueba {
+            Entero . parseInt (str);
+            devuelve  verdadero ;
+        } atrapar ( Lanzable e) {
+            devolver  falso ;
+        }
+    }
+
+    public  static  void  main ( String [] args ) {
+        JFrame frame =  nuevo  JFrame ( " Suma " );
+        JTextField fieldNum1 =  nuevo  JTextField ();
+        JTextField fieldNum2 =  nuevo  JTextField ();
+        JButton btnCalcular =  new  JButton ( " Calcular " );
+        JLabel labelResultado =  new  JLabel ( " " );
+
+        marco . setDefaultCloseOperation ( WindowConstants . EXIT_ON_CLOSE );
+        marco . setLayout ( nuevo  GridLayout ( 7 , 1 ));
+        marco . getContentPane () . agregar ( new  JLabel ( " Número 1 " ));
+        marco . getContentPane () . agregar (fieldNum1);
+        marco . getContentPane () . agregar ( new  JLabel ( " Número 2 " ));
+        marco . getContentPane () . agregar (fieldNum2);
+        marco . getContentPane () . agregar (btnCalcular);
+        marco . getContentPane () . agregar ( nuevo  JLabel ( " Resultado: " ));
+        marco . getContentPane () . agregar (labelResultado);
+        marco . setSize ( 200 , 300 );
+        marco . setResizable ( falso );
+        marco . setVisible ( verdadero );
+
+        btnCalcular . addActionListener ( nuevo  ActionListener () {
+            @Anular
+            public  void  actionPerformed ( ActionEvent  e ) {
+                Cadena val1 = fieldNum1 . getText () . podar();
+                Cadena val2 = fieldNum2 . getText () . podar();
+                if (val1 . isEmpty () || val2 . isEmpty ()) {
+                    JOptionPane . showMessageDialog (marco,
+                            " Por favor complete los campos " , " Error " ,
+                            JOptionPane . ERROR_MESSAGE );
+                    volver ;
+                }
+
+                if ( ! isInt (val1) ||  ! isInt (val2)) {
+                    JOptionPane . showMessageDialog (marco,
+                            " Número incorrecto ingresado " , " Error " ,
+                            JOptionPane . ERROR_MESSAGE );
+                    volver ;
+                }
+
+                int num1 =  Entero . parseInt (val1);
+                int num2 =  Entero . parseInt (val2);
+                labelResultado . setText ((num1 + num2) + " " );
+            }
+        });
+    }
+}
